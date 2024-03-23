@@ -1,5 +1,4 @@
 "use client"
-import { usePathname } from "next/navigation";
 import { HiUser } from "react-icons/hi2";
 import { IoNotifications } from "react-icons/io5";
 import { HiMiniChatBubbleBottomCenterText } from "react-icons/hi2";
@@ -8,17 +7,12 @@ import { FaSortDown } from "react-icons/fa";
 
 
 const Drawer = () => {
-    const pathname = usePathname();
     return (
-        // <div className="w-full bg-gray-700 text-[#FFF] font-semibold">
-        //     This is drawer
-        // </div>
-        <div className="sticky w-full top-0 bg-blue-950 text-gray-300 font-semibold">
-            <div className="relative">
+        <div className="w-full bg-blue-950 text-gray-300 font-semibold">
                 <div
                     className={` h-screen xl:block hidden relative `}
                 >
-                    <div className="h-screen flex flex-col justify-between">
+                    <div className={`h-screen flex flex-col justify-between overflow-hidden`}>
                         <div className="">
                             <div className="flex py-6 justify-between items-center pr-6 border-b-2 border-gray-500">
                                 <div className="ms-5 mt-1 flex gap-2 items-center">
@@ -107,7 +101,6 @@ const Drawer = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     );
 };

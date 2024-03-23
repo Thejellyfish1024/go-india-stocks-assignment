@@ -4,8 +4,8 @@ import { FaRegHeart } from "react-icons/fa6";
 const SingleDiscussion = ({ discussion }) => {
 
     return (
-        <div className=' pr-2 pb-2 bg-gray-300 rounded-lg shadow-xl'>
-            <div className='flex gap-3 border bg-white px-6 py-3 rounded-lg'>
+        <div className='w-full pr-2 pb-2 bg-gray-300 rounded-lg shadow-xl'>
+            <div className='w-full flex gap-3 border bg-white px-6 py-3 rounded-lg'>
                 <Image
                     src={discussion?.image}
                     width={500}
@@ -13,7 +13,7 @@ const SingleDiscussion = ({ discussion }) => {
                     className='w-10 h-10'
                     alt='user'
                 ></Image>
-                <div className='space-y-2'>
+                <div className='space-y-2 w-full'>
                     <div className='flex justify-between'>
                         <p>
                             <span className='text-lg font-semibold'>{discussion?.name}</span>
@@ -21,7 +21,7 @@ const SingleDiscussion = ({ discussion }) => {
                         </p>
                         <p className='text-blue-500 font-semibold text-sm'>2 min ago</p>
                     </div>
-                    <p className='w-4/5'>{discussion?.description}</p>
+                    <p className='w-[90%]'>{discussion?.description}</p>
                     <div className='flex justify-between w-4/5'>
                         <p className='flex font-semibold items-center gap-1'>
                             <FaRegHeart className='text-xl'></FaRegHeart>
