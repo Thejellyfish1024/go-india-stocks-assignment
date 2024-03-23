@@ -85,7 +85,7 @@ export default function Home() {
             }
           </div>
           {/* drawer for small devices */}
-          <div className={`absolute w-64 md:w-96   top-0 flex transition-all duration-300
+          <div className={`absolute w-64 md:w-96 z-50  top-0 flex transition-all duration-300
            ${openDrawer ? "left-0" : "-left-[237px] md:-left-[365px]"} `}>
             <Drawer></Drawer>
             <div className={`h-screen top-0 flex items-center ${openDrawer ? "bg-slate-200" : ""}`}>
