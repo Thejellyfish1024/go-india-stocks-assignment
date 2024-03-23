@@ -32,13 +32,17 @@ export default function Home() {
   return (
     <main>
       <div className="flex max-h-screen overflow-y-auto">
+        {/*  */}
+        {/* For large devices */}
+        {/*  */}
+
         {/* Drawer */}
-        <div className={`h-screen sticky top-0  transition-width duration-300
-           ${openDrawer ? " w-[550px]" : "w-0"} `}>
+        <div className={`hidden lg:block h-screen sticky top-0  transition-width duration-300
+           ${openDrawer ? "lg:w-[550px] xl:w-[630px]" : "w-0"} `}>
           <Drawer></Drawer>
         </div>
         {/* Drawer toggle button */}
-        <div className="h-screen sticky top-0 bg-slate-200 flex items-center">
+        <div className={`h-screen hidden lg:flex sticky top-0   items-center ${openDrawer ? "bg-slate-200" : ""}`}>
           <button onClick={() => setOpenDrawer(!openDrawer)} className=" w-fit py-10 bg-blue-950">
             <FaCaretRight className="text-2xl text-white" />
           </button>
@@ -52,8 +56,12 @@ export default function Home() {
           <MarketStories allMarketStories={allMarketStories}></MarketStories>
         </div>
 
+        {/*  */}
         {/* For small devices */}
-        <div className="md:hidden">
+        {/*  */}
+
+        <div className="lg:hidden">
+          {/* toggle bar */}
           <div className="font-semibold flex w-screen">
             <button onClick={() => setContents("discussions")}
               className={` text-white w-full py-3 ${contents === "discussions" ? "bg-blue-950 border-b-2 border-red-500" : "bg-blue-800"}`}>
@@ -64,14 +72,26 @@ export default function Home() {
               Market Stories
             </button>
           </div>
+          {/* Discussions section */}
           {
             contents === "discussions" &&
             <Discussions allDiscussions={allDiscussions}></Discussions>
           }
+            {/* Market Stories section */}
           {
             contents === "stories" &&
             <MarketStories allMarketStories={allMarketStories}></MarketStories>
           }
+          {/* drawer for small devices */}
+          <div className={`absolute w-64 md:w-96   top-0 flex transition-all duration-300
+           ${openDrawer ? "left-0" : "-left-[237px] md:-left-[365px]"} `}>
+            <Drawer></Drawer>
+            <div className={`h-screen top-0 flex items-center ${openDrawer ? "bg-slate-200" : ""}`}>
+              <button onClick={() => setOpenDrawer(!openDrawer)} className=" w-fit py-8 bg-blue-950">
+                <FaCaretRight className="text-xl text-white" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
