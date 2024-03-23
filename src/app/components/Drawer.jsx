@@ -10,7 +10,7 @@ const Drawer = () => {
     return (
         <div className="w-full bg-blue-950 text-gray-300 font-semibold">
                 <div
-                    className={` h-screen xl:block hidden relative `}
+                    className={` h-screen relative `}
                 >
                     <div className={`h-screen flex flex-col justify-between overflow-hidden`}>
                         <div className="">

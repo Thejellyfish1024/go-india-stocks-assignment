@@ -1,11 +1,34 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Discussions from "./components/Discussions";
 import Drawer from "./components/Drawer";
 import { FaCaretRight } from "react-icons/fa";
+import MarketStories from "./components/MarketStories";
 
 export default function Home() {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [allDiscussions, setAllDiscussions] = useState([]);
+  const [allMarketStories, setAllMarketStories] = useState([]);
+  const [contents, setContents] = useState("discussions");
+
+  useEffect(() => {
+    fetch('/dummy.json')
+      .then(res => res?.json())
+      .then(data => {
+        // console.log(data);
+        setAllDiscussions(data)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('/market-stories.json')
+      .then(res => res?.json())
+      .then(data => {
+        // console.log(data);
+        setAllMarketStories(data)
+      })
+  }, [])
+
   return (
     <main>
       <div className="flex max-h-screen overflow-y-auto">
@@ -15,17 +38,41 @@ export default function Home() {
           <Drawer></Drawer>
         </div>
         {/* Drawer toggle button */}
-        <div className="bg-slate-200 h-screen flex items-center">
+        <div className="h-screen sticky top-0 bg-slate-200 flex items-center">
           <button onClick={() => setOpenDrawer(!openDrawer)} className=" w-fit py-10 bg-blue-950">
             <FaCaretRight className="text-2xl text-white" />
           </button>
         </div>
         {/* Discussions section */}
-        <div className="w-full">
-          <Discussions></Discussions>
+        <div className="w-full pt-2 ml-2 hidden lg:block">
+          <Discussions allDiscussions={allDiscussions}></Discussions>
         </div>
         {/* Market Stories section */}
-        <div className="w-2/5 bg-green-500">s</div>
+        <div className="w-2/5 pt-2 ml-4 hidden lg:block">
+          <MarketStories allMarketStories={allMarketStories}></MarketStories>
+        </div>
+
+        {/* For small devices */}
+        <div className="md:hidden">
+          <div className="font-semibold flex w-screen">
+            <button onClick={() => setContents("discussions")}
+              className={` text-white w-full py-3 ${contents === "discussions" ? "bg-blue-950 border-b-2 border-red-500" : "bg-blue-800"}`}>
+              Disscussion Fourm
+            </button>
+            <button onClick={() => setContents("stories")}
+              className={` text-white w-full py-3 ${contents === "stories" ? "bg-blue-950 border-b-2 border-red-500" : "bg-blue-800"}`}>
+              Market Stories
+            </button>
+          </div>
+          {
+            contents === "discussions" &&
+            <Discussions allDiscussions={allDiscussions}></Discussions>
+          }
+          {
+            contents === "stories" &&
+            <MarketStories allMarketStories={allMarketStories}></MarketStories>
+          }
+        </div>
       </div>
     </main>
   );
