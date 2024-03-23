@@ -62,7 +62,7 @@ export default function Home() {
 
         <div className="lg:hidden">
           {/* toggle bar */}
-          <div className="font-semibold flex w-screen">
+          <div className="font-semibold flex w-screen fixed z-30">
             <button onClick={() => setContents("discussions")}
               className={` text-white w-full py-3 ${contents === "discussions" ? "bg-blue-950 border-b-2 border-red-500" : "bg-blue-800"}`}>
               Disscussion Fourm
@@ -72,16 +72,18 @@ export default function Home() {
               Market Stories
             </button>
           </div>
-          {/* Discussions section */}
-          {
-            contents === "discussions" &&
-            <Discussions allDiscussions={allDiscussions}></Discussions>
-          }
+          <div className="mt-16 pb-10">
+            {/* Discussions section */}
+            {
+              contents === "discussions" &&
+              <Discussions allDiscussions={allDiscussions}></Discussions>
+            }
             {/* Market Stories section */}
-          {
-            contents === "stories" &&
-            <MarketStories allMarketStories={allMarketStories}></MarketStories>
-          }
+            {
+              contents === "stories" &&
+              <MarketStories allMarketStories={allMarketStories}></MarketStories>
+            }
+          </div>
           {/* drawer for small devices */}
           <div className={`absolute w-64 md:w-96   top-0 flex transition-all duration-300
            ${openDrawer ? "left-0" : "-left-[237px] md:-left-[365px]"} `}>
